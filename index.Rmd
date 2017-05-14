@@ -1,0 +1,83 @@
+---
+title: "DDP: Slide and Plotly Project"
+author: "Kurtis Pivert"
+date: "5/14/2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+
+        ## Load Required Packages
+
+        require(plotly)
+        require(knitr)
+        require(tidyverse)
+        require(extrafont)
+        loadfonts(quiet = TRUE)        
+
+```
+
+## DDP: Slide and Plotly Project
+
+### **Kurtis Pivert -- May 14, 2017**
+#### *Project Motivation*
+
+For this week's project, we're required to 
+
+- Create a web page presentation using R Markdown 
+- The web page must contain the date the document was created 
+- The presentation must feature a plot created with Plotly
+- Host the web page on either GitHub Pages, RPubs, or NeoCities
+
+## Plotly Visualizations
+
+For this project, I've created three very basic plots that demonstrate the power of
+the `Plotly` package. 
+
+These include:
+
+- Histogram
+- Line chart created in `ggplot` and converted to Plotly
+- 3D Scatterplot
+
+## Histogram
+One line of code creates a basic histogram. 
+
+```{r Histogram, echo=TRUE}
+        plot_ly(mtcars, x = ~wt, type = "histogram")
+```
+
+## Line Chart with GGPlot Converted to Plotly Interactive
+
+```{r GGPLOT, echo=FALSE, cache= TRUE, message=FALSE, warning=FALSE}
+        
+         g <- ggplot(economics_long, aes(x=date, y= log(value), color = variable))+
+                geom_line()+
+                theme_bw(base_family = "Roboto")+
+                ylab(label = "Log Values")+
+                xlab(label = "Date")+
+                ggtitle(label = "US Economic Variables Over Time (Log Values)")+
+                theme(plot.title = element_text(hjust = 0.5))
+                
+         ggplotly(g)
+
+```
+
+
+## 3D Scatterplot Using the `iris` Dataset
+
+```{r 3D Scatterplot, echo = TRUE}
+        
+        plot_ly(iris, x = ~Sepal.Length, y = ~Sepal.Width, z = ~Petal.Length, 
+                color = ~Species, type = "scatter3d", mode= "markers")
+```
+
+## Thanks for Your Review
+
+I'd welcome your feedback and suggestions for improvement. Please email me at 
+[kurtis.pivert@gmail.com](mailto:kurtis.pivert@gmail.com).
+
+
+
+
+
